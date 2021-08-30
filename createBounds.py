@@ -10,10 +10,15 @@ images = glob.glob('./darkened_images/*.jpg')
 
 print('Number of images detected: '+str(len(images)))
 
+if len(glob.glob('labels/')) == 0:
+	os.mkdir('labels/')
+
 for imageName in images:
 
 	temp = imageName.split('/')[-1]
-	labelName = './labels/' + temp[23:-4] + '.txt'
+	temp = temp.split('\\')[-1].split('.')[-2]
+	
+	labelName = './labels/' + temp + '.txt'
 	print(labelName)
 	output = open(labelName, "w")
 
